@@ -12,12 +12,18 @@ namespace RPG.Characters
 		[SerializeField] CharacterConfig characterConfig;
 		[SerializeField] Waypoints wayPoints;
 
+		Character character;
+		InputRouter inputRouter;
+
 		// Use this for initialization
 		void Start () {
 			RebuildChildren ();
 			if (Application.isPlaying)
 			{
 				gameObject.AddComponent<NavMeshAgent> ();
+				character = new Character ();
+				inputRouter = gameObject.AddComponent<InputRouter> (); // As is MonoBehaviour
+				inputRouter.SetCharacter(character);
 			}
 		}
 
