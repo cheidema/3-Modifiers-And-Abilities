@@ -8,11 +8,15 @@ namespace RPG.Characters
 	[SelectionBase]
 	public class Donkey : MonoBehaviour {
 
-		[SerializeField] Character characterConfig;
+		[SerializeField] CharacterConfig characterConfig;
 
 		// Use this for initialization
 		void Start () {
 			RebuildChildren ();
+			if (Application.isPlaying)
+			{
+				//
+			}
 		}
 
 		void DestroyChildren ()

@@ -16,7 +16,7 @@ namespace RPG.Characters
         [SerializeField] int enemyLayer = 9;
         [SerializeField] float maxHealthPoints = 100f;
         [SerializeField] float damagePerHit = 10f;
-        [SerializeField] Weapon weaponInUse;
+        [SerializeField] WeaponConfig weaponInUse;
         [SerializeField] AnimatorOverrideController animatorOverrideController;
 
         Animator animator;
