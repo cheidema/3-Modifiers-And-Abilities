@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace RPG.Characters
 {
 	[ExecuteInEditMode]
 	[SelectionBase]
-	public class Donkey : MonoBehaviour {
+	public class Character : MonoBehaviour {
 
 		[SerializeField] CharacterConfig characterConfig;
 
@@ -15,7 +16,7 @@ namespace RPG.Characters
 			RebuildChildren ();
 			if (Application.isPlaying)
 			{
-				//
+				gameObject.AddComponent<NavMeshAgent> ();
 			}
 		}
 
@@ -39,7 +40,7 @@ namespace RPG.Characters
 			var model = Instantiate (characterConfig.animatedModel, gameObject.transform);
 			if (!Application.isPlaying) // TODO move to animation shim
 			{
-				model.transform.RotateAround (Vector3.up, Mathf.PI);
+				model.transform.Rotate (Vector3.up, 180f);
 			}
 		}
 		
