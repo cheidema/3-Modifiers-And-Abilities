@@ -7,6 +7,12 @@ namespace RPG.Characters
 	public class InputRouter : MonoBehaviour {
 
 		Character character;
+		Camera camera; 
+
+		void Start()
+		{
+			camera = Camera.main;
+		}
 
 		public void SetCharacter (Character character)
 		{
@@ -25,8 +31,8 @@ namespace RPG.Characters
 			float v = Input.GetAxis("Vertical");
 
 			// calculate camera relative direction to move:
-			Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
-			Vector3 movement = (v * cameraForward + h * Camera.main.transform.right).normalized;
+			Vector3 cameraForward = Vector3.Scale(camera.transform.forward, new Vector3(1, 0, 1)).normalized;
+			Vector3 movement = (v * cameraForward + h * camera.transform.right).normalized;
 
 			character.Move (new Vector2(movement.x, movement.z));
 		}
