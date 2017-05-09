@@ -12,9 +12,7 @@ namespace RPG.Characters
 
 		// Use this for initialization
 		void Start () {
-			DestroyChildren ();
-			Instantiate (characterConfig.animatedModel, gameObject.transform);
-
+			RebuildChildren ();
 		}
 
 		void DestroyChildren ()
@@ -25,13 +23,27 @@ namespace RPG.Characters
 			}
 		}
 
+		void RebuildChildren ()
+		{
+			if (characterConfig == null)
+			{
+				// TODO consider making show only once
+				Debug.LogWarning ('"' + gameObject.name + '"' + " has no character config");
+				return;
+			}
+			DestroyChildren ();
+			var model = Instantiate (characterConfig.animatedModel, gameObject.transform);
+			if (!Application.isPlaying) // TODO move to animation shim
+			{
+				model.transform.RotateAround (Vector3.up, Mathf.PI);
+			}
+		}
 		
 		// Update is called once per frame
 		void Update () {
 			if (!Application.isPlaying)
 			{
-				DestroyChildren ();
-				Instantiate (characterConfig.animatedModel, gameObject.transform);
+				RebuildChildren ();
 			}
 		}
 	}
