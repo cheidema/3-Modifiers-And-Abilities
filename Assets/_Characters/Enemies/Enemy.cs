@@ -66,18 +66,17 @@ namespace RPG.Characters
             }
         }
 
-        // TODO separate out Character firing logic
         IEnumerator RepeatFire()
         {
             while (isAttacking)
             {
+				float randomisedDelay = firingPeriodInS * Random.Range(1f - firingPeriodVariation, 1f + firingPeriodVariation);
+				yield return new WaitForSeconds(randomisedDelay);
+
                 GameObject newProjectile = Instantiate(projectileToUse, projectileSocket.transform.position, Quaternion.identity);
 
                 Projectile projectileComponent = newProjectile.GetComponent<Projectile>();
                 projectileComponent.Launch(player, damagePerShot);
-
-                float randomisedDelay = firingPeriodInS * Random.Range(1f - firingPeriodVariation, 1f + firingPeriodVariation);
-                yield return new WaitForSeconds(randomisedDelay);
             }
         }
 

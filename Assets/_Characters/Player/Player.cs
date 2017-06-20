@@ -39,6 +39,11 @@ namespace RPG.Characters
             RegisterForMouseClick();
             SetCurrentMaxHealth();
             PutWeaponInHand();
+            SetupRequiredComponents();
+        }
+
+        private void SetupRequiredComponents()
+        {
             SetupRuntimeAnimator();
             abilities[0].AttachComponentTo(gameObject);
             audioSource = GetComponent<AudioSource>();

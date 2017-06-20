@@ -7,7 +7,6 @@ namespace RPG.Weapons
     [CreateAssetMenu(menuName = ("RPG/Weapon"))]
     public class Weapon : ScriptableObject
     {
-
         public Transform gripTransform;
 
         [SerializeField] GameObject weaponPrefab;
@@ -19,7 +18,6 @@ namespace RPG.Weapons
 
         public float GetMinTimeBetweenHits()
         {
-            // TODO consdier whether we take animation time into account
             return minTimeBetweenHits;
         }
 
@@ -30,13 +28,11 @@ namespace RPG.Weapons
 
         public GameObject GetWeaponPrefab()
         {
-
             return weaponPrefab;
         }
         
         public AnimationClip GetAttackAnimClip()
         {
-	
             FindHitEvent();
             return attackAnimation;
         }
@@ -44,14 +40,12 @@ namespace RPG.Weapons
         // So that asset packs cannot cause crashes
         private void FindHitEvent()
         {
-            // attackAnimation.events = new AnimationEvent[0];
-            AnimationEvent hitEvent = new AnimationEvent();
-
             foreach(AnimationEvent animEvent in attackAnimation.events)
             {
                 if (animEvent.functionName == HIT_EVENT_NAME)
                 {
-                    hitEvent = animEvent;
+                    attackAnimation.events = new AnimationEvent[0];
+                    attackAnimation.AddEvent(animEvent);
                     break;
                 }
             }
