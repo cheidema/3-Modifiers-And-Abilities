@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +15,6 @@ namespace RPG.Weapons
 		const float MAX_RAYCAST_DISTANCE = 100f;
 
         GameObject target;
-        Vector3 originalTargetPosition = Vector3.zero;
         float damageToDeal;
 
         public void SetDamage(float damage)
