@@ -17,11 +17,13 @@ namespace RPG.Characters
         [SerializeField] float baseDamage = 10f;
         [SerializeField] Weapon weaponInUse = null;
         [SerializeField] AnimatorOverrideController animatorOverrideController = null;
+        [SerializeField] AudioClip[] damageSounds;
 
         // Temporarily serialized for dubbing
         [SerializeField] SpecialAbility[] abilities;
 
-        Animator animator;
+        AudioSource audioSource = null;
+        Animator animator = null;
         float currentHealthPoints;
         CameraRaycaster cameraRaycaster;
         float lastHitTime = 0f;
@@ -35,11 +37,15 @@ namespace RPG.Characters
             PutWeaponInHand();
             SetupRuntimeAnimator();
             abilities[0].AttachComponentTo(gameObject);
+            audioSource = GetComponent<AudioSource>();
         }
 
         public void TakeDamage(float damage)
         {
             currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
+            int clipIndex = UnityEngine.Random.Range(0, damageSounds.Length);
+            audioSource.clip = damageSounds[clipIndex];
+            audioSource.Play();
         }
 
         private void SetCurrentMaxHealth()

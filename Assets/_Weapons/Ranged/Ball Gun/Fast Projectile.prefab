@@ -228,5 +228,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1259fd4d21b427d418cd929a763f9a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 100
-  shooter: {fileID: 0}
+  projectileSpeed: 40
+  aimOffset: {x: 0, y: 1, z: 0}
