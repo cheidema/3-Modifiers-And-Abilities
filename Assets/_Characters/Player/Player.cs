@@ -19,9 +19,13 @@ namespace RPG.Characters
         [SerializeField] AnimatorOverrideController animatorOverrideController = null;
         [SerializeField] AudioClip[] damageSounds;
 
-        // Temporarily serialized for dubbing
+        // Temporarily serialized for debugging
         [SerializeField] SpecialAbility[] abilities;
 
+        const string ATTACK_TRIGGER = "Attack";
+        const string DEFAULT_ATTACK_CLIP_NAME = "DEFAULT ATTACK";
+
+        Enemy enemy = null;
         AudioSource audioSource = null;
         Animator animator = null;
         float currentHealthPoints;
@@ -57,7 +61,7 @@ namespace RPG.Characters
         {
             animator = GetComponent<Animator>();
             animator.runtimeAnimatorController = animatorOverrideController;
-            animatorOverrideController["DEFAULT ATTACK"] = weaponInUse.GetAttackAnimClip(); // remove const
+            animatorOverrideController[DEFAULT_ATTACK_CLIP_NAME] = weaponInUse.GetAttackAnimClip(); // remove const
         }
 
         private void PutWeaponInHand()
@@ -84,19 +88,20 @@ namespace RPG.Characters
             cameraRaycaster.onMouseOverEnemy += OnMouseOverEnemy;
         }
 
-        void OnMouseOverEnemy(Enemy enemy)
+        void OnMouseOverEnemy(Enemy enemyMouseIsOverThisFrame)
         {
+            this.enemy = enemyMouseIsOverThisFrame;
             if (Input.GetMouseButton(0) && IsTargetInRange(enemy.gameObject))
             {
-                AttackTarget(enemy);
+                AttackCurrentEnemy();
             }
             else if (Input.GetMouseButtonDown(1))
             {
-                AttemptSpecialAbility(0, enemy);
+                AttemptSpecialAbility(0);
             }
         }
 
-        private void AttemptSpecialAbility(int abilityIndex, Enemy enemy)
+        private void AttemptSpecialAbility(int abilityIndex)
         {
             var energyComponent = GetComponent<Energy>();
             var energyCost = abilities[abilityIndex].GetEnergyCost();
@@ -109,14 +114,19 @@ namespace RPG.Characters
             }
         }
 
-        private void AttackTarget(Enemy enemy)
+        private void AttackCurrentEnemy()
         {
             if (Time.time - lastHitTime > weaponInUse.GetMinTimeBetweenHits())
             {
-                animator.SetTrigger("Attack"); // TODO make const
-                enemy.TakeDamage(baseDamage);
+                animator.SetTrigger(ATTACK_TRIGGER);
                 lastHitTime = Time.time;
             }
+        }
+
+        // Note this method name must match that in the animation
+        public void Hit()
+        {
+			enemy.TakeDamage(baseDamage);
         }
 
         private bool IsTargetInRange(GameObject target)

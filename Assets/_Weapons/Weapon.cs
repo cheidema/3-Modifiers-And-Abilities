@@ -15,6 +15,8 @@ namespace RPG.Weapons
         [SerializeField] float minTimeBetweenHits = .5f;
         [SerializeField] float maxAttackRange = 2f;
 
+        const string HIT_EVENT_NAME = "Hit"; // Also change method name on charater(s)
+
         public float GetMinTimeBetweenHits()
         {
             // TODO consdier whether we take animation time into account
@@ -28,19 +30,31 @@ namespace RPG.Weapons
 
         public GameObject GetWeaponPrefab()
         {
+
             return weaponPrefab;
         }
         
         public AnimationClip GetAttackAnimClip()
         {
-            RemoveAnimationEvents();
+	
+            FindHitEvent();
             return attackAnimation;
         }
 
         // So that asset packs cannot cause crashes
-        private void RemoveAnimationEvents()
+        private void FindHitEvent()
         {
-            attackAnimation.events = new AnimationEvent[0];
+            // attackAnimation.events = new AnimationEvent[0];
+            AnimationEvent hitEvent = new AnimationEvent();
+
+            foreach(AnimationEvent animEvent in attackAnimation.events)
+            {
+                if (animEvent.functionName == HIT_EVENT_NAME)
+                {
+                    hitEvent = animEvent;
+                    break;
+                }
+            }
         }
     }
 }
