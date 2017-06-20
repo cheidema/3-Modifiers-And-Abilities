@@ -9,44 +9,40 @@ namespace RPG.Weapons
 {
     public class Projectile : MonoBehaviour
     {
-        [SerializeField] float projectileSpeed;
-        [SerializeField] GameObject shooter; // So can inspected when paused
+        [SerializeField] float projectileSpeed; // todo add range of values
+		[SerializeField] Vector3 aimOffset = new Vector3(0, 1f, 0);
 
-        const float DESTROY_DELAY = 0.01f;
-        float damageCaused;
+		const float DESTROY_DELAY = 0.01f;
+		const float MAX_RAYCAST_DISTANCE = 100f;
 
-        public void SetShooter(GameObject shooter)
-        {
-            this.shooter = shooter;
-        }
+        GameObject target;
+        Vector3 originalTargetPosition = Vector3.zero;
+        float damageToDeal;
 
         public void SetDamage(float damage)
         {
-            damageCaused = damage;
+            damageToDeal = damage;
         }
 
-        public float GetDefaultLaunchSpeed()
+        public void Launch(GameObject target, float damageToDeal)
         {
-            return projectileSpeed;
+            this.target = target;
+            this.damageToDeal = damageToDeal;
         }
 
-        void OnCollisionEnter(Collision collision)
+        void Update()
         {
-            var layerCollidedWith = collision.gameObject.layer;
-            if (shooter && layerCollidedWith != shooter.layer)
+            Vector3 toTarget = target.transform.position - transform.position + aimOffset;
+            float distanceToMoveThisFrame = projectileSpeed * Time.deltaTime;
+            if (toTarget.magnitude > distanceToMoveThisFrame)
             {
-                DamageIfDamageable(collision);
+                transform.position += toTarget.normalized * distanceToMoveThisFrame;                
             }
-        }
-
-        private void DamageIfDamageable(Collision collision)
-        {
-            Component damagableComponent = collision.gameObject.GetComponent(typeof(IDamageable));
-            if (damagableComponent)
+            else
             {
-                (damagableComponent as IDamageable).TakeDamage(damageCaused);
+                target.GetComponent<IDamageable>().TakeDamage(damageToDeal);
+                Destroy(gameObject);
             }
-            Destroy(gameObject, DESTROY_DELAY);
         }
     }
 }
