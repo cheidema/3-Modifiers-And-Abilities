@@ -810,7 +810,8 @@ MonoBehaviour:
   chaseRadius: 6.48
   attackRadius: 1.85
   damagePerShot: 60
-  secondsBetweenShots: 2
+  firingPeriodInS: 2
+  firingPeriodVariation: 0.1
   projectileToUse: {fileID: 1093317976226508, guid: e66c44233a342c24b883c0c8ddc35b04,
     type: 2}
   projectileSocket: {fileID: 1092267038565084}

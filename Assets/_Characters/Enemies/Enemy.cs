@@ -16,7 +16,8 @@ namespace RPG.Characters
 
         [SerializeField] float attackRadius = 4f;
         [SerializeField] float damagePerShot = 9f;
-        [SerializeField] float secondsBetweenShots = 0.5f;
+        [SerializeField] float firingPeriodInS = 0.5f;
+        [SerializeField] float firingPeriodVariation = 0.1f;
         [SerializeField] GameObject projectileToUse;
         [SerializeField] GameObject projectileSocket;
         [SerializeField] Vector3 aimOffset = new Vector3(0, 1f, 0);
@@ -47,13 +48,13 @@ namespace RPG.Characters
             if (distanceToPlayer <= attackRadius && !isAttacking)
             {
                 isAttacking = true;
-                InvokeRepeating("FireProjectile", 0f, secondsBetweenShots); // TODO switch to coroutines
+                StartCoroutine(RepeatFire());
             }
 
             if (distanceToPlayer > attackRadius)
             {
                 isAttacking = false;
-                CancelInvoke();
+                StopCoroutine(RepeatFire());
             }
 
             if (distanceToPlayer <= chaseRadius)
@@ -67,16 +68,22 @@ namespace RPG.Characters
         }
 
         // TODO separate out Character firing logic
-        void FireProjectile()
+        IEnumerator RepeatFire()
         {
-            GameObject newProjectile = Instantiate(projectileToUse, projectileSocket.transform.position, Quaternion.identity);
-            Projectile projectileComponent = newProjectile.GetComponent<Projectile>();
-            projectileComponent.SetDamage(damagePerShot);
-            projectileComponent.SetShooter(gameObject);
+            while (isAttacking)
+            {
+                GameObject newProjectile = Instantiate(projectileToUse, projectileSocket.transform.position, Quaternion.identity);
+                Projectile projectileComponent = newProjectile.GetComponent<Projectile>();
+                projectileComponent.SetDamage(damagePerShot);
+                projectileComponent.SetShooter(gameObject);
 
-            Vector3 unitVectorToPlayer = (player.transform.position + aimOffset - projectileSocket.transform.position).normalized;
-            float projectileSpeed = projectileComponent.GetDefaultLaunchSpeed();
-            newProjectile.GetComponent<Rigidbody>().velocity = unitVectorToPlayer * projectileSpeed;
+                Vector3 unitVectorToPlayer = (player.transform.position + aimOffset - projectileSocket.transform.position).normalized;
+                float projectileSpeed = projectileComponent.GetDefaultLaunchSpeed();
+                newProjectile.GetComponent<Rigidbody>().velocity = unitVectorToPlayer * projectileSpeed;
+
+                float randomisedDelay = firingPeriodInS * Random.Range(1f - firingPeriodVariation, 1f + firingPeriodVariation);
+                yield return new WaitForSeconds(randomisedDelay);
+            }
         }
 
         void OnDrawGizmos()
