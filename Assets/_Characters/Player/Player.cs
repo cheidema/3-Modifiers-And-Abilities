@@ -38,19 +38,41 @@ namespace RPG.Characters
 
         public float healthAsPercentage { get { return currentHealthPoints / maxHealthPoints; } }
 
-        void Start()
+        void AttachInitialAbilities()
         {
-            RegisterForMouseClick();
-            SetCurrentMaxHealth();
-            PutWeaponInHand();
-            SetupRequiredComponents();
+            for (int abilityIndex = 0; abilityIndex < abilities.Length; abilityIndex++)
+            {
+                abilities[abilityIndex].AttachComponentTo(gameObject);
+            }
         }
 
-        private void SetupRequiredComponents()
-        {
+		void Start()
+		{
+			RegisterForMouseClick();
+			SetCurrentMaxHealth();
+			PutWeaponInHand();
             SetupRuntimeAnimator();
-            abilities[0].AttachComponentTo(gameObject);
             audioSource = GetComponent<AudioSource>();
+            AttachInitialAbilities();
+		}
+
+        void Update()
+        {
+            if (healthAsPercentage > Mathf.Epsilon)
+            {
+                ScanForSpecialAbilityKey();
+            }
+        }
+
+        private void ScanForSpecialAbilityKey()
+        {
+            for (int numKey = 1; numKey < abilities.Length; numKey++)
+            {
+                if (Input.GetKeyDown(numKey.ToString()))
+                {
+                    AttemptSpecialAbility(numKey);
+                }
+            }
         }
 
         public void TakeDamage(float damage)
