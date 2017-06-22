@@ -8830,6 +8830,16 @@ Prefab:
       propertyPath: currentHealthPoints
       value: 2.55
       objectReference: {fileID: 0}
+    - target: {fileID: 114633348878164724, guid: 7737647c22c1fc64a88d5cd030c352ce,
+        type: 2}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 14784b89f2a694d50a6661abfb5f9c44, type: 3}
+    - target: {fileID: 114633348878164724, guid: 7737647c22c1fc64a88d5cd030c352ce,
+        type: 2}
+      propertyPath: deathAnimation
+      value: 
+      objectReference: {fileID: 7400000, guid: 9a26352c93a81e947b73b8e47cc931bb, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
   m_IsPrefabParent: 0
@@ -9941,7 +9951,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1224068246}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bd4b796113cf49fbbdd5b54b2f9e961, type: 3}
   m_Name: 

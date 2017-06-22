@@ -24,7 +24,7 @@ namespace RPG.Characters
         bool isAttacking = false;
         float currentHealthPoints;
         AICharacterControl aiCharacterControl = null;
-        GameObject player = null;
+        Player player = null;
 
         public float healthAsPercentage { get { return currentHealthPoints / maxHealthPoints; } }
 
@@ -36,7 +36,7 @@ namespace RPG.Characters
 
         void Start()
         {
-            player = GameObject.FindGameObjectWithTag("Player");
+            player = FindObjectOfType<Player>();
             aiCharacterControl = GetComponent<AICharacterControl>();
             currentHealthPoints = maxHealthPoints;
         }
@@ -44,6 +44,12 @@ namespace RPG.Characters
         void Update()
         {
             float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+
+            if (player.healthAsPercentage < Mathf.Epsilon)
+            {
+                Destroy(this); // Stop enemy behaviour on death
+            }
+
             if (distanceToPlayer <= attackRadius && !isAttacking)
             {
                 isAttacking = true;
@@ -76,7 +82,7 @@ namespace RPG.Characters
                 GameObject newProjectile = Instantiate(projectileToUse, projectileSocket.transform.position, Quaternion.identity);
 
                 Projectile projectileComponent = newProjectile.GetComponent<Projectile>();
-                projectileComponent.Launch(player, damagePerShot);
+                projectileComponent.Launch(player.gameObject, damagePerShot);
             }
         }
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.SceneManagement; // TODO question wisdom of having here rather than core
 
 // TODO consider re-wire...
 using RPG.CameraUI;
@@ -16,13 +17,16 @@ namespace RPG.Characters
         [SerializeField] float maxHealthPoints = 100f;
         [SerializeField] float baseDamage = 10f;
         [SerializeField] Weapon weaponInUse = null;
-        [SerializeField] AnimatorOverrideController animatorOverrideController = null;
+        [SerializeField] AnimatorOverrideController animatorOverrideController = null; // TODO hide
+       
         [SerializeField] AudioClip[] damageSounds;
+        [SerializeField] AudioClip deathSound;
 
         // Temporarily serialized for debugging
         [SerializeField] SpecialAbility[] abilities;
 
         const string ATTACK_TRIGGER = "Attack";
+        const string DEATH_TRIGGER = "Death";
         const string DEFAULT_ATTACK_CLIP_NAME = "DEFAULT ATTACK";
 
         Enemy enemy = null;
@@ -51,10 +55,33 @@ namespace RPG.Characters
 
         public void TakeDamage(float damage)
         {
-            currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
-            int clipIndex = UnityEngine.Random.Range(0, damageSounds.Length);
-            audioSource.clip = damageSounds[clipIndex];
-            audioSource.Play();
+            if (currentHealthPoints - damage <= 0)
+            {
+                ReduceHealth(damage);
+                StartCoroutine(KillPlayer());
+            }
+            else
+            {
+                ReduceHealth(damage);
+            }
+
+        }
+
+        IEnumerator KillPlayer()
+        {
+            audioSource.clip = deathSound;
+			audioSource.Play();
+            animator.SetTrigger(DEATH_TRIGGER);
+            yield return new WaitForSecondsRealtime(deathSound.length);
+            SceneManager.LoadScene(0);
+        }
+
+        private void ReduceHealth(float damage)
+        {
+			currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
+			int clipIndex = UnityEngine.Random.Range(0, damageSounds.Length);
+			audioSource.clip = damageSounds[clipIndex];
+			audioSource.Play();
         }
 
         private void SetCurrentMaxHealth()
