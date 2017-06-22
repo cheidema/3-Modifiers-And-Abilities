@@ -31,8 +31,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 149790}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -8.05, y: 0.07, z: 11.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4032402743314716}
@@ -88,9 +88,9 @@ MonoBehaviour:
   m_StationaryTurnSpeed: 900
   m_JumpPower: 6
   m_GravityMultiplier: 2
-  m_RunCycleLegOffset: 0.2
-  m_MoveSpeedMultiplier: 0.7
-  m_AnimSpeedMultiplier: 1.5
+  m_RunCycleLegOffset: 0.5
+  m_MoveSpeedMultiplier: 1
+  m_AnimSpeedMultiplier: 1.8
   m_GroundCheckDistance: 1
 --- !u!136 &13615390
 CapsuleCollider:
@@ -4858,9 +4858,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0790696343c874d63aadc56685f2dc14, type: 3}
   - {fileID: 8300000, guid: 8589467a490df427798bb9a0b730a4b3, type: 3}
   - {fileID: 8300000, guid: 21345f926845e4548acd7f82aa4bb589, type: 3}
+  deathSound: {fileID: 8300000, guid: 14784b89f2a694d50a6661abfb5f9c44, type: 3}
   abilities:
   - {fileID: 11400000, guid: 8ca914442b46540d1b48580b2599b2e4, type: 2}
-  - {fileID: 11400000, guid: 8ca914442b46540d1b48580b2599b2e4, type: 2}
+  - {fileID: 11400000, guid: 87b1244f6029d4a0f850297a5dfedd7a, type: 2}
+  - {fileID: 11400000, guid: db1c7f72c6f194c1caf5c8ed6ca37f69, type: 2}
 --- !u!114 &114978401065010746
 MonoBehaviour:
   m_ObjectHideFlags: 1
