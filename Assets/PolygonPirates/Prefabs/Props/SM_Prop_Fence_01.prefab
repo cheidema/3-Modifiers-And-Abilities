@@ -10,6 +10,7 @@ GameObject:
   - component: {fileID: 432296}
   - component: {fileID: 3384250}
   - component: {fileID: 2390794}
+  - component: {fileID: 65976100893090914}
   m_Layer: 0
   m_Name: SM_Prop_Fence_01
   m_TagString: Untagged
@@ -23,13 +24,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 146788}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 87.17, y: 0, z: -45.43}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.05414908, y: -0.9929849, z: -0.07946041, w: 0.06881033}
+  m_LocalPosition: {x: -11.79, y: 2.39, z: -19.3}
+  m_LocalScale: {x: 1.4400296, y: 1.3475596, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -8.647, y: -171.55101, z: -6.8830004}
 --- !u!23 &2390794
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -43,7 +44,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 5e1235b2e417983469723d36f05de88d, type: 2}
+  - {fileID: 2100000, guid: 668d580a8e7a2a0498e6fa6ade595e10, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -80,3 +81,15 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 146788}
   m_IsPrefabParent: 1
+--- !u!65 &65976100893090914
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 146788}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.7049813, y: 0.7665925, z: 0.25281918}
+  m_Center: {x: 0.0000023813298, y: 0.38329613, z: -0.0000038032738}

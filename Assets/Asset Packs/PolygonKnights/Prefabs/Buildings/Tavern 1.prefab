@@ -138,6 +138,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4747653096043548}
+  - component: {fileID: 65751146424774870}
   m_Layer: 0
   m_Name: Tavern 1
   m_TagString: Untagged
@@ -443,9 +444,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1319561111597860}
-  m_LocalRotation: {x: -0, y: 0.70818174, z: -0, w: -0.70603025}
-  m_LocalPosition: {x: -16.63, y: 1.32, z: -1.86}
-  m_LocalScale: {x: 2.5290813, y: 1.9088726, z: 1}
+  m_LocalRotation: {x: -0, y: 0.99520856, z: -0, w: -0.09777476}
+  m_LocalPosition: {x: -20.98, y: 0.86, z: 5.04}
+  m_LocalScale: {x: 2.5290804, y: 1.9088726, z: 1}
   m_Children:
   - {fileID: 4372268080688758}
   - {fileID: 4297501261882024}
@@ -464,7 +465,7 @@ Transform:
   - {fileID: 4652368139437842}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -168.77802, z: 0}
 --- !u!4 &4830145043888420
 Transform:
   m_ObjectHideFlags: 1
@@ -1089,3 +1090,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1203707217431614}
   m_Mesh: {fileID: 4300000, guid: 8e5c85a892ef3324587fae297bc38f50, type: 3}
+--- !u!65 &65751146424774870
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1319561111597860}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.38, y: 1.59, z: 10.14}
+  m_Center: {x: 1.33, y: 0.21, z: -2.47}
