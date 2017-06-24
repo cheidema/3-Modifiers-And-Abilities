@@ -10,6 +10,7 @@ GameObject:
   - component: {fileID: 460842}
   - component: {fileID: 3337408}
   - component: {fileID: 2311194}
+  - component: {fileID: 65277862361384808}
   m_Layer: 0
   m_Name: SM_Prop_Stool_02
   m_TagString: Untagged
@@ -24,8 +25,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 148462}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -3.16, y: -0.02, z: 4.73}
+  m_LocalScale: {x: 1.5512799, y: 1.5512795, z: 1.5512795}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -80,3 +81,15 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 148462}
   m_IsPrefabParent: 1
+--- !u!65 &65277862361384808
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148462}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5331034, y: 0.5196962, z: 0.5655519}
+  m_Center: {x: 0, y: 0.2598481, z: -0.00000023841856}
