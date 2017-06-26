@@ -188,7 +188,7 @@ Here are the lectures of the course for this section...
 
 ### 30 Create An Area Of Effect Ability
 1. Describe your challenge
-2. Introduce `Physics.ShpereCastAll()' API
+2. Introduce `Physics.ShpereCastAll()` API
 3. Demonstrate my Area Of Effect solution.
 
 
