@@ -29,6 +29,7 @@ namespace RPG.CameraUI
             if (EventSystem.current.IsPointerOverGameObject())
             {
                 // Impliment UI interaction
+                print("Over ui"); 
             }
             else
             {
