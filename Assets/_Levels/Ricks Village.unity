@@ -770,7 +770,7 @@ MonoBehaviour:
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.713
+  m_FillAmount: 0.155
   m_FillClockwise: 1
   m_FillOrigin: 0
 --- !u!222 &58040391
@@ -3604,6 +3604,7 @@ GameObject:
   - component: {fileID: 446759411}
   - component: {fileID: 446759413}
   - component: {fileID: 446759412}
+  - component: {fileID: 446759414}
   m_Layer: 5
   m_Name: Blood
   m_TagString: Untagged
@@ -3662,6 +3663,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 446759410}
+--- !u!114 &446759414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 446759410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3ae0176683984eb88f5949654f4edbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &448385669
 GameObject:
   m_ObjectHideFlags: 0
@@ -7408,7 +7420,7 @@ Prefab:
         type: 2}
       propertyPath: energyBar
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 58040390}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 2}
   m_IsPrefabParent: 0

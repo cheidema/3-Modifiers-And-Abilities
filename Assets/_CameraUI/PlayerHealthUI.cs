@@ -2,27 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using RPG.Characters;
 
-namespace RPG.Characters
+namespace RPG.CameraUI
 {
-    [RequireComponent(typeof(RawImage))]
-    public class PlayerHealthBar : MonoBehaviour
+    public class PlayerHealthUI : MonoBehaviour
     {
-        RawImage healthBarRawImage;
+        Image healthOrb;
         Player player;
 
         // Use this for initialization
         void Start()
         {
+            healthOrb = GetComponent<Image>();
             player = FindObjectOfType<Player>();
-            healthBarRawImage = GetComponent<RawImage>();
         }
 
         // Update is called once per frame
         void Update()
         {
-            float xValue = -(player.healthAsPercentage / 2f) - 0.5f;
-            healthBarRawImage.uvRect = new Rect(xValue, 0f, 0.5f, 1f);
+            healthOrb.fillAmount = player.healthAsPercentage;
         }
     }
 }
