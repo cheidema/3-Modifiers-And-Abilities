@@ -10,6 +10,7 @@ GameObject:
   - component: {fileID: 429314}
   - component: {fileID: 3309862}
   - component: {fileID: 2373152}
+  - component: {fileID: 135998997223238792}
   m_Layer: 0
   m_Name: SM_Env_CampFire_01
   m_TagString: Untagged
@@ -24,8 +25,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157752}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 104.51654, y: 0.09917635, z: -39.46669}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -6.56, y: 0, z: 3.56}
+  m_LocalScale: {x: 3.1133127, y: 3.1133146, z: 3.1133146}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -80,3 +81,15 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 157752}
   m_IsPrefabParent: 1
+--- !u!135 &135998997223238792
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157752}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7655078
+  m_Center: {x: 0.05, y: -0.04, z: 0.05}
